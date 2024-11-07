@@ -1,3 +1,4 @@
+import { createRoot } from "react-dom/client";
 import ReactDOM from 'react-dom'
 
 /**
@@ -15,7 +16,8 @@ export function render (markup) {
     afterEach(render.unmount)
   }
 
-  return ReactDOM.render(markup, render._mountNode)
+  const root = createRoot(render._mountNode);
+  root.render(markup);
 }
 
 /**
@@ -24,7 +26,8 @@ export function render (markup) {
  */
 render.unmount = function () {
   if (render._mountNode) {
-    ReactDOM.unmountComponentAtNode(render._mountNode)
+    const root = createRoot(render._mountNode);
+    root.unmount();
 
     document.body.removeChild(render._mountNode)
 
