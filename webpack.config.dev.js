@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CopyPlugin = require('copy-webpack-plugin')
 const path = require('path')
 const webpack = require('webpack')
 
@@ -18,6 +19,11 @@ module.exports = {
       inject: true,
       template: './website/index.html'
     }),
+    new CopyPlugin(
+      [
+        'src/main.d.ts'
+      ],
+    ),
     new webpack.NoErrorsPlugin()
   ],
   module: {

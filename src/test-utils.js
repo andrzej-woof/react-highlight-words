@@ -1,4 +1,4 @@
-import { createRoot } from "react-dom/client";
+import { createRoot } from 'react-dom/client'
 
 /**
  * Helper method for testing components that may use Portal and thus require cleanup.
@@ -11,12 +11,12 @@ export function render (markup) {
 
     // Unless we attach the mount-node to body, getBoundingClientRect() won't work
     document.body.appendChild(render._mountNode)
-    render.root = createRoot(render._mountNode);
+    render.root = createRoot(render._mountNode)
 
     afterEach(render.unmount)
   }
-  render.root.render(markup);
-  return render._mountNode;
+  render.root.render(markup)
+  return render._mountNode
 }
 
 /**
@@ -25,7 +25,7 @@ export function render (markup) {
  */
 render.unmount = function () {
   if (render._mountNode) {
-    render.root.unmount();
+    render.root.unmount()
     document.body.removeChild(render._mountNode)
     render._mountNode = null
     render.root = null

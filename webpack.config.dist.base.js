@@ -1,3 +1,5 @@
+const CopyPlugin = require('copy-webpack-plugin')
+
 const path = require('path')
 const _ = require('lodash')
 const pkg = require('./package.json')
@@ -12,6 +14,11 @@ module.exports = {
     library: 'react-highlight-words'
   },
   plugins: [
+    new CopyPlugin(
+      [
+        'src/main.d.ts'
+      ],
+    )
   ],
   externals: _.chain({})
       .assign(

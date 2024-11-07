@@ -76,7 +76,7 @@ export default class HighlighterExample extends Component {
         <Highlighter
           activeClassName={styles.Active}
           activeIndex={activeIndex}
-          autoEscape={true}
+          autoEscape
           caseSensitive={caseSensitive}
           highlightClassName={styles.Highlight}
           highlightStyle={{ fontWeight: 'normal' }}
@@ -86,7 +86,7 @@ export default class HighlighterExample extends Component {
         />
 
         <p className={styles.Footer}>
-          <a href='https://github.com/bvaughn/react-highlight-words/blob/master/src/Highlighter.example.js'>
+          <a href='https://github.com/andrzej-woof/react-highlight-words/blob/master/src/Highlighter.example.js'>
             View the source
           </a>
         </p>

@@ -404,7 +404,6 @@ describe('Highlighter', () => {
         expect(allMatches[2].classList).not.to.contain('text')
       }
     })
-
   })
 
   it('should spread additional custom props onto the wrapper span', () => {
