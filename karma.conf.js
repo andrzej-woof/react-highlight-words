@@ -1,6 +1,6 @@
 module.exports = function (config) {
   config.set({
-    browsers: ['Chrome'],
+    browsers: ['ChromeHeadless'],
     frameworks: ['mocha'],
     files: ['src/tests.js'],
     preprocessors: {
