@@ -1,6 +1,6 @@
 {
   "name": "@pigsty/react-highlight-words",
-  "version": "0.21.1",
+  "version": "0.21.3",
   "description": "React component to highlight words within a larger body of text",
   "main": "dist/main.js",
   "types": "dist/main.d.ts",
@@ -96,7 +96,7 @@
     "worker-loader": "^0.7.0"
   },
   "dependencies": {
-    "highlight-words-core": "https://github.com/99-ielts/highlight-words-core.git",
+    "highlight-words-core": "^1.2.0",
     "memoize-one": "^4.0.0",
     "prop-types": "^15.5.8"
   },
