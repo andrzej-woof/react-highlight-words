@@ -95,7 +95,7 @@
     "worker-loader": "^0.7.0"
   },
   "dependencies": {
-    "highlight-words-core": "^1.2.0",
+    "highlight-words-core": "https://github.com/99-ielts/highlight-words-core.git",
     "memoize-one": "^4.0.0",
     "prop-types": "^15.5.8"
   },
