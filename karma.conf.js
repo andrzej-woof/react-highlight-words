@@ -1,9 +1,9 @@
-import webpack from './webpack.config.test'
+// var webpack = require('./webpack.config.test');
 
 module.exports = function (config) {
   config.set({
     browsers: ['ChromeHeadless'],
-    frameworks: ['mocha'],
+    frameworks: ['mocha', 'webpack'],
     files: ['src/tests.js'],
     preprocessors: {
       'src/tests.js': ['webpack', 'sourcemap']
@@ -21,6 +21,6 @@ module.exports = function (config) {
       'karma-sourcemap-loader',
       'karma-chrome-launcher'
     ],
-    webpack
+    webpack: require('./webpack.config.test'),
   })
 }

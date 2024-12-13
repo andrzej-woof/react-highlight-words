@@ -20,7 +20,8 @@ module.exports = {
     }),
     new CopyPlugin({
       patterns: [
-        'src/main.d.ts'
+        'src/main.d.ts',
+        { from: 'src/main.d.ts', to: path.join(__dirname, 'build/static', 'main.d.ts') }
       ]
     }),
     new webpack.NoEmitOnErrorsPlugin()
