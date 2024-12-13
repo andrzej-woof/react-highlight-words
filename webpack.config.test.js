@@ -1,4 +1,4 @@
-const CopyPlugin = require('copy-webpack-plugin')
+// const CopyPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
 const webpack = require('webpack')
@@ -18,12 +18,12 @@ module.exports = {
       inject: true,
       template: './website/index.html'
     }),
-    new CopyPlugin({
-      patterns: [
-        'src/main.d.ts',
-        { from: path.join(__dirname, 'src/main.d.ts'), to: path.join(__dirname, 'build/static', 'main.d.ts') }
-      ],
-    }),
+    // new CopyPlugin({
+    //   patterns: [
+    //     'src/main.d.ts',
+    //     { from: path.join(__dirname, 'src/main.d.ts'), to: path.join(__dirname, 'build/static', 'main.d.ts') }
+    //   ],
+    // }),
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
