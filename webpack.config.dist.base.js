@@ -17,16 +17,16 @@ module.exports = {
     new CopyPlugin(
       [
         'src/main.d.ts'
-      ],
+      ]
     )
   ],
   externals: _.chain({})
-      .assign(
-        pkg.dependencies,
-        pkg.peerDependencies
-      )
-      .mapValues((value, key) => key)
-      .value(),
+    .assign(
+      pkg.dependencies,
+      pkg.peerDependencies
+    )
+    .mapValues((value, key) => key)
+    .value(),
   module: {
     loaders: [
       {

@@ -1,3 +1,5 @@
+import webpack from './webpack.config.test'
+
 module.exports = function (config) {
   config.set({
     browsers: ['ChromeHeadless'],
@@ -12,13 +14,13 @@ module.exports = function (config) {
     },
     singleRun: true,
     plugins: [
-      require('karma-mocha'),
-      require('karma-webpack'),
-      require('karma-spec-reporter'),
-      require('karma-junit-reporter'),
-      require('karma-sourcemap-loader'),
-      require('karma-chrome-launcher')
+      'karma-mocha',
+      'karma-webpack',
+      'karma-spec-reporter',
+      'karma-junit-reporter',
+      'karma-sourcemap-loader',
+      'karma-chrome-launcher'
     ],
-    webpack: require('./webpack.config.test')
+    webpack
   })
 }

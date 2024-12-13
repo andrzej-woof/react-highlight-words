@@ -22,14 +22,14 @@ module.exports = {
     new CopyPlugin(
       [
         'src/main.d.ts'
-      ],
+      ]
     ),
     new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
         // to temporarily suppress "ReactDOM.render is no longer supported in React 18" warnings
         // should be removed after switching to createRoot
-        'NODE_ENV': JSON.stringify('production')
+        NODE_ENV: JSON.stringify('production')
       }
     })
   ],

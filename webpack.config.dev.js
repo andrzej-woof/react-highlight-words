@@ -6,12 +6,11 @@ const webpack = require('webpack')
 module.exports = {
   devtool: 'eval',
   entry: [
-    'babel/polyfill',
     './website/index.js'
   ],
   output: {
-    path: 'build',
-    filename: '/static/[name].js'
+    path: '/build/static',
+    filename: '[name].js'
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -19,29 +18,39 @@ module.exports = {
       inject: true,
       template: './website/index.html'
     }),
-    new CopyPlugin(
-      [
+    new CopyPlugin({
+      patterns: [
         'src/main.d.ts'
-      ],
-    ),
-    new webpack.NoErrorsPlugin()
+      ]
+    }),
+    new webpack.NoEmitOnErrorsPlugin()
   ],
   module: {
-    loaders: [
-      {
-        test: /\.js$/,
-        loader: 'babel',
-        exclude: path.join(__dirname, 'node_modules')
-      },
-      {
-        test: /\.css$/,
-        loaders: ['style', 'css?modules&importLoaders=1', 'cssnext'],
-        exclude: path.join(__dirname, 'node_modules')
-      }
-    ]
+    rules: [
+        {
+          test: /\.js$/,
+          use: 'babel-loader',
+          exclude: path.join(__dirname, 'node_modules')
+        },
+        {
+          test: /\.css$/,
+          use: [
+            {
+              loader: "style-loader"
+            },
+            {
+              loader: "css-loader",
+              options: {
+                modules: true
+              }
+            }
+          ],
+          exclude: path.join(__dirname, 'node_modules')
+        }
+     ]
   },
   devServer: {
-    contentBase: 'build',
+    static: 'build',
     port: 3567
   }
 }

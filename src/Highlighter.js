@@ -76,7 +76,7 @@ export default function Highlighter ({
 
   const lowercaseProps = object => {
     const mapped = {}
-    for (let key in object) {
+    for (const key in object) {
       mapped[key.toLowerCase()] = object[key]
     }
     return mapped
@@ -85,54 +85,55 @@ export default function Highlighter ({
 
   return createElement('span', {
     className,
-    ...rest,
-    children: chunks.map((chunk, index) => {
-      const text = textToHighlight.substring(chunk.start, chunk.end - chunk.start)
+    ...rest
+  },
+  ...chunks.map((chunk, index) => {
+    const text = textToHighlight.substring(chunk.start, chunk.end - chunk.start)
 
-      if (chunk.highlight) {
-        highlightIndex++
+    if (chunk.highlight) {
+      highlightIndex++
 
-        let highlightClass
-        if (typeof highlightClassName === 'object') {
-          if (!caseSensitive) {
-            highlightClassName = memoizedLowercaseProps(highlightClassName)
-            highlightClass = highlightClassName[text.toLowerCase()]
-          } else {
-            highlightClass = highlightClassName[text]
-          }
+      let highlightClass
+      if (typeof highlightClassName === 'object') {
+        if (!caseSensitive) {
+          highlightClassName = memoizedLowercaseProps(highlightClassName)
+          highlightClass = highlightClassName[text.toLowerCase()]
         } else {
-          highlightClass = highlightClassName
+          highlightClass = highlightClassName[text]
         }
-
-        const isActive = highlightIndex === +activeIndex
-
-        highlightClassNames = `${highlightClass} ${isActive ? activeClassName : ''}`
-        highlightStyles = isActive === true && activeStyle != null
-          ? Object.assign({}, highlightStyle, activeStyle)
-          : highlightStyle
-
-        const props = {
-          children: text,
-          className: highlightClassNames,
-          key: index,
-          style: highlightStyles
-        }
-
-        // Don't attach arbitrary props to DOM elements; this triggers React DEV warnings (https://fb.me/react-unknown-prop)
-        // Only pass through the highlightIndex attribute for custom components.
-        if (typeof HighlightTag !== 'string') {
-          props.highlightIndex = highlightIndex
-        }
-
-        return createElement(HighlightTag, props)
       } else {
-        return createElement(unhighlightTag, {
-          children: text,
-          className: unhighlightClassName,
-          key: index,
-          style: unhighlightStyle
-        })
+        highlightClass = highlightClassName
       }
-    })
+
+      const isActive = highlightIndex === +activeIndex
+
+      highlightClassNames = `${highlightClass} ${isActive ? activeClassName : ''}`
+      highlightStyles = isActive === true && activeStyle != null
+        ? Object.assign({}, highlightStyle, activeStyle)
+        : highlightStyle
+
+      const props = {
+        children: text,
+        className: highlightClassNames,
+        key: index,
+        style: highlightStyles
+      }
+
+      // Don't attach arbitrary props to DOM elements; this triggers React DEV warnings (https://fb.me/react-unknown-prop)
+      // Only pass through the highlightIndex attribute for custom components.
+      if (typeof HighlightTag !== 'string') {
+        props.highlightIndex = highlightIndex
+      }
+
+      return createElement(HighlightTag, props)
+    } else {
+      return createElement(unhighlightTag, {
+
+        className: unhighlightClassName,
+        key: index,
+        style: unhighlightStyle
+      }, text)
+    }
   })
+  )
 }
