@@ -10,15 +10,15 @@ module.exports = {
     './src/index.js'
   ],
   output: {
-    path: 'dist',
+    path: path.join(__dirname, 'dist'),
     library: 'react-highlight-words'
   },
   plugins: [
-    new CopyPlugin(
-      [
+    new CopyPlugin({
+      patterns: [
         'src/main.d.ts'
       ]
-    )
+    })
   ],
   externals: _.chain({})
     .assign(
@@ -28,16 +28,26 @@ module.exports = {
     .mapValues((value, key) => key)
     .value(),
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
-        loader: 'babel',
+        use: 'babel-loader',
         exclude: /(node_modules)/,
         include: path.join(__dirname, 'src')
       },
       {
         test: /\.css$/,
-        loaders: ['style', 'css?modules&importLoaders=1', 'cssnext'],
+        use: [
+          {
+            loader: 'style-loader'
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true
+            }
+          }
+        ],
         exclude: path.join(__dirname, 'node_modules')
       }
     ]

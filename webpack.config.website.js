@@ -5,12 +5,11 @@ const webpack = require('webpack')
 module.exports = {
   devtool: 'source-map',
   entry: [
-    'babel/polyfill',
     './website/index.js'
   ],
   output: {
-    path: 'build',
-    filename: 'static/[name].js'
+    path: path.join(__dirname, 'build/static'),
+    filename: '[name].js'
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -25,15 +24,25 @@ module.exports = {
     })
   ],
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
-        loader: 'babel',
+        use: 'babel-loader',
         exclude: path.join(__dirname, 'node_modules')
       },
       {
         test: /\.css$/,
-        loaders: ['style', 'css?modules&importLoaders=1', 'cssnext'],
+        use: [
+          {
+            loader: 'style-loader'
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true
+            }
+          }
+        ],
         exclude: path.join(__dirname, 'node_modules')
       }
     ]

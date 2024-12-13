@@ -9,7 +9,7 @@ module.exports = {
     './website/index.js'
   ],
   output: {
-    path: '/build/static',
+    path: path.join(__dirname, 'build/static'),
     filename: '[name].js'
   },
   plugins: [
@@ -27,27 +27,27 @@ module.exports = {
   ],
   module: {
     rules: [
-        {
-          test: /\.js$/,
-          use: 'babel-loader',
-          exclude: path.join(__dirname, 'node_modules')
-        },
-        {
-          test: /\.css$/,
-          use: [
-            {
-              loader: "style-loader"
-            },
-            {
-              loader: "css-loader",
-              options: {
-                modules: true
-              }
+      {
+        test: /\.js$/,
+        use: 'babel-loader',
+        exclude: path.join(__dirname, 'node_modules')
+      },
+      {
+        test: /\.css$/,
+        use: [
+          {
+            loader: 'style-loader'
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true
             }
-          ],
-          exclude: path.join(__dirname, 'node_modules')
-        }
-     ]
+          }
+        ],
+        exclude: path.join(__dirname, 'node_modules')
+      }
+    ]
   },
   devServer: {
     static: 'build',

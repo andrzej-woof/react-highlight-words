@@ -6,7 +6,7 @@
   "types": "dist/main.d.ts",
   "scripts": {
     "build": "npm run build:website && npm run build:dist",
-    "build:website": "npm run clean:website && cross-env NODE_ENV=production webpack --config webpack.config.website.js -p --bail",
+    "build:website": "npm run clean:website && cross-env NODE_ENV=production webpack --config webpack.config.website.js --mode=production --bail",
     "build:dist": "npm run clean:dist && cross-env NODE_ENV=production webpack --config webpack.config.dist.cjs.js --bail && cross-env NODE_ENV=production webpack --config webpack.config.dist.umd.js --bail",
     "clean": "npm run clean:website && npm run clean:dist",
     "clean:website": "rimraf build",
